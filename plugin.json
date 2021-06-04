@@ -1,0 +1,12 @@
+{
+    "ID": "2a4e484e-76de-45c4-aea2-b15f5ghc328f",
+    "ActionKeyword": "tms",
+    "Name": "Unix TimeStamp",
+    "Description": "Unix TimeStamp",
+    "Author": "Wayne Custaf Laqinoa Ferdon",
+    "Version": "1.0.0",
+    "Language": "python",
+    "Website": "https://github.com/wayneferdon/",
+    "IcoPath": "./Images/app.png",
+    "ExecuteFileName": "main.py"
+}
