@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
 # require pypiwin32, can be install by pip
 from wox import Wox, WoxAPI
-import re
-import json
-import os
 import win32con
 import win32clipboard
 import time
-import shutil
 
 
 # class getTimeStamp():
 class getTimeStamp(Wox):
     @classmethod
     def query(cls, queryString):
-        folderIcon = './Images/app.png'
+        folderIcon = 'Images/app.png'
         result = list()
         if queryString == "":
             outPut = 'Enter Time or TimeStamp'
@@ -60,21 +56,6 @@ class getTimeStamp(Wox):
             }
         )
         return result
-
-    # def context_menu(self, bookmarkIndex):
-    #     results = [
-    #         {
-    #             'Title': 'URL: ' + url,
-    #             'SubTitle': 'Press Enter to Copy URL',
-    #             'IcoPath': iconPath,
-    #             'JsonRPCAction': {
-    #                 'method': 'copyData',
-    #                 'parameters': [url],
-    #                 "doNotHideAfterAction".replace('oNo', 'on'): False,
-    #             }
-    #         }
-    #     ]
-    #     return results
 
     @classmethod
     def copyData(cls, data):
