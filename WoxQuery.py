@@ -2,7 +2,7 @@
 # Author: wayneferdon wayneferdon@hotmail.com
 # Date: 2022-10-05 16:16:00
 # LastEditors: wayneferdon wayneferdon@hotmail.com
-# LastEditTime: 2022-10-09 18:59:43
+# LastEditTime: 2022-11-23 04:53:43
 # FilePath: \Wox.Plugin.TimeStamp\WoxQuery.py
 # ----------------------------------------------------------------
 # Copyright (c) 2022 by Wayne Ferdon Studio. All rights reserved.
@@ -15,6 +15,7 @@
 from wox import Wox, WoxAPI
 import win32con
 import win32clipboard
+import traceback
 
 class WoxQuery(Wox):
 # class WoxQuery():
@@ -22,7 +23,9 @@ class WoxQuery(Wox):
     def copyData(cls, data):
         win32clipboard.OpenClipboard()
         win32clipboard.EmptyClipboard()
-        win32clipboard.SetClipboardData(win32con.CF_UNICODETEXT, data)
+        # modified from origin to just the copy needs(only for this project)
+        # win32clipboard.SetClipboardData(win32con.CF_UNICODETEXT, data)
+        win32clipboard.SetClipboardData(win32con.CF_UNICODETEXT, data[1:-1])
         win32clipboard.CloseClipboard()
     
     @classmethod
@@ -30,6 +33,25 @@ class WoxQuery(Wox):
         title = type + ": " + titleData
         subTitle = 'Press Enter to Copy ' + type
         return WoxResult(title, subTitle, iconPath, None, cls.copyData.__name__, True, titleData).toDict()
+
+class Debug:
+    # 静态变量
+    Instance=None
+    _flag=False
+    def __new__(cls, *args, **kwargs):
+        if cls.Instance is None:
+            cls.Instance=super().__new__(cls)
+        return cls.Instance
+    def __init__(self):
+        if Debug._flag:
+            return
+        Debug._flag=True
+
+    Logs = list[str]()
+    
+    @staticmethod
+    def Log(*info):
+        Debug.Instance.Logs.append([len(Debug.Instance.Logs), str(list(info))[1:-1] + "\n" + "\n".join(traceback.format_stack())])
 
 class WoxResult:
     def __init__(self, title:str, subTitle:str, icoPath:str, contextData , method:str, hideAfterAction:bool, *args) -> None:
