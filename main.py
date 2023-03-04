@@ -1,9 +1,22 @@
+# ----------------------------------------------------------------
+# Author: WayneFerdon wayneferdon@hotmail.com
+# Date: 2023-03-04 12:45:58
+# LastEditors: WayneFerdon wayneferdon@hotmail.com
+# LastEditTime: 2023-03-04 13:36:24
+# FilePath: \Flow.Launcher.Plugin.TimeStamp\main.py
+# ----------------------------------------------------------------
+# Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
+# Licensed to the .NET Foundation under one or more agreements.
+# The .NET Foundation licenses this file to you under the MIT license.
+# See the LICENSE file in the project root for more information.
+# ----------------------------------------------------------------
+
 # -*- coding: utf-8 -*-
 # require pypiwin32, can be install by pip
 from datetime import datetime
 import traceback
 
-from WoxQuery import *
+from Query import *
 from RegexList import *
 
 def replaceAll(string:str, replaceFrom:str, replaceTo:str) -> str:
@@ -26,7 +39,7 @@ def formatFloatDigits(num:float, frontCount:int, endCount:int):
     end = formatIntDigits(end, endCount, True)
     return front + '.' + end
 
-class WoxUnixTime(WoxQuery):
+class UnixTimeQuery(Query):
     def init(self):
         # region init icon
         self.folderIcon = './Images/app.png'
@@ -65,15 +78,15 @@ class WoxUnixTime(WoxQuery):
         # region init Error Results
         output = 'OSError'
         SubTitle = 'TIMESTAMP RANGE : [-43200, 32536850399]'
-        self.OSErrorResult = WoxResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
+        self.OSErrorResult = QueryResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
 
         output = 'Enter UnixTime'
         SubTitle = 'TIMESTAMP(Unix) :  u<timestamp>'
-        self.UnixTimeErrorResult = WoxResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
+        self.UnixTimeErrorResult = QueryResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
 
         output = 'Enter Time'
         SubTitle = 'TIME(ISO 8601 with Time Zone) : <YYYY>-<MM>-<DD>T<HH>:<MM>:<SS>.<ssssss>+<ZZ>:<zz>'
-        self.TimeErrorResult = WoxResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
+        self.TimeErrorResult = QueryResult(output, SubTitle, self.folderIcon, None, None, True).toDict()
         # endregion init Error Results
         return
 
@@ -223,7 +236,7 @@ class WoxUnixTime(WoxQuery):
                 except ValueError:
                     tb = traceback.format_exc()
                     if "month must be in" not in tb:
-                        Debug.Log(traceback.format_exc())
+                        QueryDebug.Log(traceback.format_exc())
                     continue
                 utcISO = datetime.utcfromtimestamp(stamp).isoformat()+"+00:00"
                 utcISO = utcISO.replace(":00+",":00.000000+").replace(":00-",":00.000000-")
@@ -244,7 +257,7 @@ class WoxUnixTime(WoxQuery):
                 outputs.append(["{}".format(stamp), TimeStampSubTitle.format(iso, isoDisplay), str(stamp)])
 
             for output in outputs:
-                result = WoxResult(output[0], output[1], self.folderIcon, 'timestamp', self.copyData.__name__, True, repr(output[2])).toDict()
+                result = QueryResult(output[0], output[1], self.folderIcon, 'timestamp', self.copyData.__name__, True, repr(output[2])).toDict()
                 isExisted = False
                 for existed in results:
                     if existed == result:
@@ -262,15 +275,15 @@ class WoxUnixTime(WoxQuery):
             errorResults.append(self.TimeErrorResult)
             errorResults.append(self.UnixTimeErrorResult)
             errorResults.append(
-                WoxResult(tc, 'Press Enter to copy traceback', self.folderIcon, None, self.copyData.__name__, True, repr(tc)).toDict()
+                QueryResult(tc, 'Press Enter to copy traceback', self.folderIcon, None, self.copyData.__name__, True, repr(tc)).toDict()
             )
         results += errorResults
-        for log in Debug.Logs:
+        for log in QueryDebug.Logs:
             results.append(
-                WoxResult(str(log[1]), "[Log {}] Press Enter to copy".format(log[0]), self.folderIcon, 'timestamp', self.copyData.__name__, True, log).toDict()
+                QueryResult(str(log[1]), "[Log {}] Press Enter to copy".format(log[0]), self.folderIcon, 'timestamp', self.copyData.__name__, True, log).toDict()
             )
         return results
 
 if __name__ == '__main__':
-    Debug()
-    WoxUnixTime()
+    QueryDebug()
+    UnixTimeQuery()

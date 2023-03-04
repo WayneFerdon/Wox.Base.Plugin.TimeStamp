@@ -1,9 +1,9 @@
 # ----------------------------------------------------------------
 # Author: wayneferdon wayneferdon@hotmail.com
 # Date: 2022-10-08 17:29:37
-# LastEditors: wayneferdon wayneferdon@hotmail.com
-# LastEditTime: 2022-10-08 17:29:38
-# FilePath: \Wox.Plugin.TimeStamp\RegexList.py
+# LastEditors: WayneFerdon wayneferdon@hotmail.com
+# LastEditTime: 2023-03-04 13:18:42
+# FilePath: \Flow.Launcher.Plugin.TimeStamp\RegexList.py
 # ----------------------------------------------------------------
 # Copyright (c) 2022 by Wayne Ferdon Studio. All rights reserved.
 # Licensed to the .NET Foundation under one or more agreements.
