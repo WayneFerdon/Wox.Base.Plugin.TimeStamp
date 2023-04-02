@@ -2,7 +2,7 @@
 # Author: WayneFerdon wayneferdon@hotmail.com
 # Date: 2023-03-04 12:45:58
 # LastEditors: WayneFerdon wayneferdon@hotmail.com
-# LastEditTime: 2023-03-04 13:36:24
+# LastEditTime: 2023-04-02 12:53:24
 # FilePath: \Flow.Launcher.Plugin.TimeStamp\main.py
 # ----------------------------------------------------------------
 # Copyright (c) 2023 by Wayne Ferdon Studio. All rights reserved.
@@ -17,6 +17,7 @@ from datetime import datetime
 import traceback
 
 from Query import *
+from QueryDebug import *
 from RegexList import *
 
 def replaceAll(string:str, replaceFrom:str, replaceTo:str) -> str:
