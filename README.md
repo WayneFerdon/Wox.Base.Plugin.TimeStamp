@@ -12,4 +12,8 @@ Format convert between datetime and time stamp.
 2. Convert time stamp to datetime: tms TS \<TimeStamp\>
     >Example: tms TS 1649150461
 
-3. To Change from [Flow Launcher](https://github.com/Flow-Launcher/Flow.Launcher) to [legacy Wox launcher](https://github.com/Wox-launcher/Wox), see [Query.py: Line20](https://github.com/WayneFerdon/Wox.Plugin.TimeStamp/blob/master/Query.py#L20) ~ [Query.py: Line42](https://github.com/WayneFerdon/Wox.Plugin.TimeStamp/blob/master/Query.py#L42)
+1. Requirements
+
+   > [WoxPluginBase_Query](https://github.com/WayneFerdon/WoxPluginBase_Query/)
+
+2. Other Wox base launcher should be available too, see [WoxPluginBase_Query](https://github.com/WayneFerdon/WoxPluginBase_Query/)
