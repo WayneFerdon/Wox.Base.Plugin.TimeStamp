@@ -1,4 +1,4 @@
-# Flow.Launcher.Plugin.TimeStamp
+# Wox.Base.Launcher.Plugin.TimeStamp
 
 Plugin for [Flow Launcher](https://github.com/Flow-Launcher/Flow.Launcher) or other [Wox](https://github.com/Wox-launcher/Wox) base launchers
 Format convert between datetime and time stamp.
