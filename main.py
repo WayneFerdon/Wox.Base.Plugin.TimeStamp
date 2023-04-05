@@ -40,7 +40,7 @@ def formatFloatDigits(num:float, frontCount:int, endCount:int):
     end = formatIntDigits(end, endCount, True)
     return front + '.' + end
 
-class UnixTimeQuery(Query):
+class UnixTimeQuery(QueryPlugin):
     def init(self):
         # region init icon
         self.folderIcon = './Images/app.png'
